@@ -6,8 +6,8 @@ public class UserModel {
 
     @JsonProperty("id")
     private int id;
-    @JsonProperty("user")
-    private String user ;
+    @JsonProperty("rut")
+    private String rut ;
     @JsonProperty("password")
     private String password;
 
@@ -19,12 +19,12 @@ public class UserModel {
         this.id = id;
     }
 
-    public String getUser() {
-        return user;
+    public String getRut() {
+        return rut;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setRut(String rut) {
+        this.rut = rut;
     }
 
     public String getPassword() {

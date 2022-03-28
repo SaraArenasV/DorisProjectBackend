@@ -12,7 +12,7 @@ public class UserHelper implements IUserHelper {
     public UserModel setUser(User input) {
         UserModel data = new UserModel();
         data.setId(input.getId());
-        data.setUser (input.getUser());
+        data.setRut (input.getRut());
         data.setPassword (input.getPassword());
         return data;
     }
@@ -21,7 +21,7 @@ public class UserHelper implements IUserHelper {
     public User setUser(UserModel input) {
         User data = new User();
         data.setId(input.getId());
-        data.setUser (input.getUser());
+        data.setRut (input.getRut());
         data.setPassword (input.getPassword());
         return data;
     }
