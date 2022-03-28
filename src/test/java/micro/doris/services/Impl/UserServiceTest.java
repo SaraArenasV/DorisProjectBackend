@@ -23,22 +23,19 @@ public class UserServiceTest {
     @Test
     public void test_save_repository() {
         User userlogin =  new User();
-        userlogin.setId(1);
-        userlogin.setRut("test_junit");
+        userlogin.setName("test_junit");
+        userlogin.setRut("123456789");
         userlogin.setPassword("1234");
-
+        userlogin.setMail("ifyumx@gmail.com");
+        userlogin.setActive(true);
         repository.save(userlogin);
-        Assertions.assertThat(userlogin.getId()).isGreaterThan(0);
+
+        Assertions.assertThat(userlogin.getName()).isEqualTo("test_junit");
+        Assertions.assertThat(userlogin.getRut()).isEqualTo("123456789");
+        Assertions.assertThat(userlogin.getPassword()).isEqualTo("1234");
+        Assertions.assertThat(userlogin.getMail()).isEqualTo("ifyumx@gmail.com");
+        Assert.assertTrue(userlogin.isActive());
     }
 
-
-    @Test
-    public void optein_false_for_default() {
-        User user = new User();
-        user.setRut("test");
-        user.setPassword("123");
-        Assert.assertFalse(userService.verifyUser(user));
-
-    }
 
 }

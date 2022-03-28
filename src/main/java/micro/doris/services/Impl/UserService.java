@@ -21,7 +21,7 @@ public class UserService implements IUserService {
     public Boolean verifyUser(User request) {
         Boolean response = false;
 
-   if (usersRepository.findUsersByUserAndPassword(request.getUser(), request.getPassword()) !=null){
+   if (usersRepository.findUsersByUserAndPassword(request.getRut(), request.getPassword()) !=null){
        response = true;
    }
 

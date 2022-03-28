@@ -12,22 +12,23 @@ import javax.persistence.*;
 
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+
+
     @Column(name = "rut")
     private String rut ;
+
+    @Column(name = "name")
+    private String name;
+    
     @Column(name = "password")
     private String password;
 
-    public int getId() {
-        return id;
-    }
+    @Column(name = "mail")
+    private String mail;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+
+    @Column(name = "active")
+    private boolean active;
 
     public String getRut() {
         return rut;
@@ -35,6 +36,14 @@ public class User {
 
     public void setRut(String rut) {
         this.rut = rut;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -45,5 +54,19 @@ public class User {
         this.password = password;
     }
 
+    public String getMail() {
+        return mail;
+    }
 
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 }

@@ -11,8 +11,10 @@ public class UserHelper implements IUserHelper {
     @Override
     public UserModel setUser(User input) {
         UserModel data = new UserModel();
-        data.setId(input.getId());
-        data.setRut (input.getRut());
+        data.setRut(input.getRut());
+        data.setName (input.getName());
+        data.setMail(input.getMail());
+        data.setActive(input.isActive());
         data.setPassword (input.getPassword());
         return data;
     }
@@ -20,8 +22,10 @@ public class UserHelper implements IUserHelper {
     @Override
     public User setUser(UserModel input) {
         User data = new User();
-        data.setId(input.getId());
         data.setRut (input.getRut());
+        data.setName(input.getName());
+        data.setMail(input.getMail());
+        data.setActive(input.isActive());
         data.setPassword (input.getPassword());
         return data;
     }
