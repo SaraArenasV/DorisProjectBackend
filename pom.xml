@@ -8,11 +8,11 @@
         <version>2.5.2</version>
         <relativePath/> <!-- lookup parent from micro.doris.repository -->
     </parent>
-    <groupId>micro.atomic.cell</groupId>
+    <groupId>micro.doris</groupId>
     <artifactId>doris</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>MicroDoris</name>
-    <description>Demo project for Spring Boot</description>
+    <description>doris project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>
         <springfox-version>2.9.2</springfox-version>
@@ -62,10 +62,6 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.h2database</groupId>-->
-<!--            <artifactId>h2</artifactId>-->
-<!--        </dependency>-->
 
     </dependencies>
 

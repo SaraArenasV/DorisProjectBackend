@@ -1,33 +1,33 @@
 package micro.doris.entity;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
-@Data
-@NoArgsConstructor
-@Entity
-@Table(name = "userlogin")
 
+@Entity
+@Table(name = "user", schema = "public")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
     @Column(name = "rut")
     private String rut ;
+
     @Column(name = "password")
     private String password;
 
-    public int getId() {
-        return id;
-    }
+    @Column(name = "mail")
+    private String mail;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    @Column(name = "active")
+    private String active;
+
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
     public String getRut() {
         return rut;
@@ -45,5 +45,27 @@ public class User {
         this.password = password;
     }
 
+    public String getMail() {
+        return mail;
+    }
 
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getActive() {
+        return active;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
+    }
+
+//    public boolean isActive() {
+//        return active;
+//    }
+//
+//    public void setActive(boolean active) {
+//        this.active = active;
+//    }
 }
