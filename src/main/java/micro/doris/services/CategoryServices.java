@@ -1,14 +1,14 @@
 package micro.doris.services;
 
-import micro.doris.entity.CategoryEntityJpa;
-import micro.doris.entity.CategoryRequestEntity;
+import micro.doris.entity.Category;
+import micro.doris.viewmodel.CategoryRequest;
 import micro.doris.to.Convert;
 
 public interface CategoryServices {
 
-	CategoryEntityJpa getRecordByNameId(CategoryRequestEntity nameId);
+	Category getRecordByNameId(CategoryRequest nameId);
 
-	Convert deleteRecordJpa(CategoryRequestEntity nameId);
+	Convert deleteRecordJpa(CategoryRequest nameId);
 
-	CategoryEntityJpa save(CategoryEntityJpa request);
+	Category save(Category request);
 }

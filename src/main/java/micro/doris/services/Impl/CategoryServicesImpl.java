@@ -1,11 +1,11 @@
 package micro.doris.services.Impl;
 
+import micro.doris.entity.Category;
+import micro.doris.viewmodel.CategoryRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import micro.doris.entity.CategoryEntityJpa;
-import micro.doris.entity.CategoryRequestEntity;
 import micro.doris.repository.CategoryRepository;
 import micro.doris.services.CategoryServices;
 import micro.doris.to.Convert;
@@ -26,12 +26,12 @@ public class CategoryServicesImpl implements CategoryServices {
 	static final String NOT_DELETED = "record not deleted, record name is :";
 
 	@Override
-	public CategoryEntityJpa getRecordByNameId(CategoryRequestEntity nameId) {
-		CategoryEntityJpa res = repository.findByIdAndName(nameId.getId(), nameId.getName());
+	public Category getRecordByNameId(CategoryRequest nameId) {
+		Category res = repository.findByIdAndName(nameId.getId(), nameId.getName());
 		return res;
 	}
 
-	public Convert deleteRecordJpa(CategoryRequestEntity nameId) {
+	public Convert deleteRecordJpa(CategoryRequest nameId) {
 
 		if (validateCategory(nameId) && validateProduct(nameId)) {
 			try {
@@ -57,7 +57,7 @@ public class CategoryServicesImpl implements CategoryServices {
 
 	}
 
-	public boolean validateCategory(CategoryRequestEntity nameId) {
+	public boolean validateCategory(CategoryRequest nameId) {
 		try {
 			if (repository.findByIdAndName(nameId.getId(), nameId.getName()) != null) {
 				categoryExist = true;
@@ -72,7 +72,7 @@ public class CategoryServicesImpl implements CategoryServices {
 		return categoryExist;
 	}
 
-	public boolean validateProduct(CategoryRequestEntity nameId) {
+	public boolean validateProduct(CategoryRequest nameId) {
 
 		if (nameId.getId() <= 10) {
 			categoryExist = true;
@@ -83,7 +83,7 @@ public class CategoryServicesImpl implements CategoryServices {
 
 
 
-	public CategoryEntityJpa save(CategoryEntityJpa request) {
+	public Category save(Category request) {
 
 
 		return repository.save(request);

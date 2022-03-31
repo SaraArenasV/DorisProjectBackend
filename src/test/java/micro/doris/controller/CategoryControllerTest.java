@@ -16,8 +16,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import micro.doris.entity.CategoryEntityJpa;
-import micro.doris.entity.CategoryRequestEntity;
+import micro.doris.entity.Category;
+import micro.doris.viewmodel.CategoryRequest;
 import micro.doris.services.CategoryServices;
 import micro.doris.to.Convert;
 
@@ -49,7 +49,7 @@ class CategoryControllerTest {
 	
 	@Test
 	public void mockDeleteCategoryByIdJpa() {
-		CategoryRequestEntity request = new CategoryRequestEntity();
+		CategoryRequest request = new CategoryRequest();
 		request.setId(1);
 
 		Mockito.when(categoryService.deleteRecordJpa(request)).thenReturn(convert);
@@ -61,16 +61,16 @@ class CategoryControllerTest {
 
 	@Test
 	public void mockFindByNameIdJpa() {
-		CategoryRequestEntity req = new  CategoryRequestEntity();
+		CategoryRequest req = new CategoryRequest();
 		req.setId(1);
 
-		CategoryEntityJpa customer = new CategoryEntityJpa();
+		Category customer = new Category();
 		customer.setId(1);
 		customer.setActive("Y");
 		customer.setName("wood");
 
 		Mockito.when(categoryService.getRecordByNameId(req)).thenReturn(customer);
-		ResponseEntity<CategoryEntityJpa> callResult = controller.findByNameIdJpa(req);
+		ResponseEntity<Category> callResult = controller.findByNameIdJpa(req);
 		HttpStatus code = callResult.getStatusCode();
 		Integer id = callResult.getBody().getId();
 
