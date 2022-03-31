@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import micro.doris.entity.CategoryEntityJpa;
+import micro.doris.entity.CategoryRequestEntity;
 import micro.doris.repository.CategoryRepository;
 import micro.doris.to.Convert;
 
@@ -20,9 +21,6 @@ import static org.junit.Assert.assertNotNull;
 @SpringBootTest
 @RunWith(MockitoJUnitRunner.class)
 class CategoryServiceTests {
-
-	private static final long L1 = 1L;
-	private static final long L2 = 2L;
 
 	@Test
 	void contextLoads() {
@@ -34,30 +32,34 @@ class CategoryServiceTests {
 	@InjectMocks
 	CategoryServicesImpl categoryServiceImpl;
 
-
 	Convert response = new Convert();
 
 	@Test
-	public void mockDeleteRecordJpa() {
+	public void mockDeleteRecordJpaValidation() {
 
-		response = categoryServiceImpl.deleteRecordJpa(L1);
+		CategoryRequestEntity request = new CategoryRequestEntity();
+		request.setId(5);
 
-		assertEquals(response.getSuccess(), true);
+		response = categoryServiceImpl.deleteRecordJpa(request);
+
+		assertEquals(response.getSuccess(), false);
 
 	}
 
 	@Test
 	public void mockGetRecordByIdJpa() {
-		
+		CategoryRequestEntity req = new CategoryRequestEntity();
+		req.setId(1);
+		req.setName("wood");
+
 		CategoryEntityJpa customer = new CategoryEntityJpa();
 		customer.setActive("Y");
-		customer.setId(L1);
+		customer.setId(1);
 		customer.setName("Test Forest name");
-		
-		Mockito.when(usersRepositoryJpa.findUsersById(L2)).thenReturn(customer);
-		
-		
-		CategoryEntityJpa response = categoryServiceImpl.getRecordByIdJpa(L2);
+
+		Mockito.when(usersRepositoryJpa.findByIdAndName(req.getId(), req.getName())).thenReturn(customer);
+
+		CategoryEntityJpa response = categoryServiceImpl.getRecordByNameId(req);
 
 		assertNotNull("The object you enter return null", response.getName());
 	}

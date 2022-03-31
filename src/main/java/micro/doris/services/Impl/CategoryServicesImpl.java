@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import micro.doris.entity.CategoryEntityJpa;
+import micro.doris.entity.CategoryRequestEntity;
 import micro.doris.repository.CategoryRepository;
 import micro.doris.services.CategoryServices;
 import micro.doris.to.Convert;
@@ -17,30 +18,65 @@ public class CategoryServicesImpl implements CategoryServices {
 	CategoryRepository usersRepositoryJpa;
 
 	Convert converted = new Convert();
+	boolean categoryExist;
 
 	static final String DELETED = "record deleted";
 	static final String NOT_DELETED = "record not deleted, record name is :";
 
 	@Override
-	public CategoryEntityJpa getRecordByIdJpa(Long id) {
-		CategoryEntityJpa res = usersRepositoryJpa.findUsersById(id);
+	public CategoryEntityJpa getRecordByNameId(CategoryRequestEntity nameId) {
+		CategoryEntityJpa res = usersRepositoryJpa.findByIdAndName(nameId.getId(), nameId.getName());
 		return res;
 	}
 
-	public Convert deleteRecordJpa(Long id) {
+	public Convert deleteRecordJpa(CategoryRequestEntity nameId) {
 
+		if (validateCategory(nameId) && validateProduct(nameId)) {
+			try {
+				usersRepositoryJpa.deleteById(nameId.getId());
+
+				converted.setMessage(DELETED);
+				converted.setSuccess(true);
+
+				return converted;
+
+			} catch (RuntimeException e) {
+				e.getMessage();
+				converted.setMessage(NOT_DELETED);
+				converted.setSuccess(false);
+
+				return converted;
+
+			}
+		} else
+			converted.setMessage(" : Category what you trying to delete not exist ");
+		converted.setSuccess(false);
+		return converted;
+
+	}
+
+	public boolean validateCategory(CategoryRequestEntity nameId) {
 		try {
-			usersRepositoryJpa.deleteById(id);
-
-			converted.setMessage(DELETED);
-			converted.setSuccess(true);
-			return converted;
+			if (usersRepositoryJpa.findByIdAndName(nameId.getId(), nameId.getName()) != null) {
+				categoryExist = true;
+			} else
+				categoryExist = false;
 
 		} catch (RuntimeException e) {
-			converted.setMessage(NOT_DELETED);
-			converted.setSuccess(false);
-			return converted;
+			e.getMessage();
+			categoryExist = false;
 
 		}
+		return categoryExist;
 	}
+
+	public boolean validateProduct(CategoryRequestEntity nameId) {
+
+		if (nameId.getId() <= 10) {
+			categoryExist = true;
+		} else
+			categoryExist = false;
+		return categoryExist;
+	}
+
 }
