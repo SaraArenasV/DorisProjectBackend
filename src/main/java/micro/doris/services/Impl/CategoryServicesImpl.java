@@ -10,12 +10,14 @@ import micro.doris.repository.CategoryRepository;
 import micro.doris.services.CategoryServices;
 import micro.doris.to.Convert;
 
+import java.util.Locale;
+
 @Service
 @Transactional
 public class CategoryServicesImpl implements CategoryServices {
 
 	@Autowired
-	CategoryRepository usersRepositoryJpa;
+	CategoryRepository repository;
 
 	Convert converted = new Convert();
 	boolean categoryExist;
@@ -25,7 +27,7 @@ public class CategoryServicesImpl implements CategoryServices {
 
 	@Override
 	public CategoryEntityJpa getRecordByNameId(CategoryRequestEntity nameId) {
-		CategoryEntityJpa res = usersRepositoryJpa.findByIdAndName(nameId.getId(), nameId.getName());
+		CategoryEntityJpa res = repository.findByIdAndName(nameId.getId(), nameId.getName());
 		return res;
 	}
 
@@ -33,7 +35,7 @@ public class CategoryServicesImpl implements CategoryServices {
 
 		if (validateCategory(nameId) && validateProduct(nameId)) {
 			try {
-				usersRepositoryJpa.deleteById(nameId.getId());
+				repository.deleteById(nameId.getId());
 
 				converted.setMessage(DELETED);
 				converted.setSuccess(true);
@@ -57,7 +59,7 @@ public class CategoryServicesImpl implements CategoryServices {
 
 	public boolean validateCategory(CategoryRequestEntity nameId) {
 		try {
-			if (usersRepositoryJpa.findByIdAndName(nameId.getId(), nameId.getName()) != null) {
+			if (repository.findByIdAndName(nameId.getId(), nameId.getName()) != null) {
 				categoryExist = true;
 			} else
 				categoryExist = false;
@@ -78,5 +80,15 @@ public class CategoryServicesImpl implements CategoryServices {
 			categoryExist = false;
 		return categoryExist;
 	}
+
+
+
+	public CategoryEntityJpa save(CategoryEntityJpa request) {
+
+
+		return repository.save(request);
+	}
+
+
 
 }

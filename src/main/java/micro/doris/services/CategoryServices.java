@@ -10,4 +10,5 @@ public interface CategoryServices {
 
 	Convert deleteRecordJpa(CategoryRequestEntity nameId);
 
+	CategoryEntityJpa save(CategoryEntityJpa request);
 }

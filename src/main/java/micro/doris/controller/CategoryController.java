@@ -5,11 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 import micro.doris.entity.CategoryEntityJpa;
@@ -37,5 +33,13 @@ public class CategoryController {
 	public ResponseEntity<Convert> deleteJpa(@RequestBody CategoryRequestEntity nameId) {
 		return new ResponseEntity<>(callService.deleteRecordJpa(nameId), HttpStatus.OK);
 	}
+
+
+	// save
+	@PostMapping ("/deleteCategoryByIdJpa")
+	public ResponseEntity<CategoryEntityJpa> save(@RequestBody CategoryEntityJpa requeest) {
+		return new ResponseEntity<>(callService.save(requeest), HttpStatus.OK);
+	}
+
 
 }
