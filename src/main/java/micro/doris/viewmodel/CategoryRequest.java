@@ -1,11 +1,11 @@
-package micro.doris.entity;
+package micro.doris.viewmodel;
 
-public class CategoryRequestEntity {
+public class CategoryRequest {
 
 	private Integer id;
 	private String name;
 
-	public CategoryRequestEntity() {
+	public CategoryRequest() {
 		super();
 	}
 
