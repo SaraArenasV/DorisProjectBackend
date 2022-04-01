@@ -25,13 +25,13 @@ public class CategoryController {
 
 	// Find By ID
 	@GetMapping("/getCategoryByIdAndName/")
-	public ResponseEntity<Category> findByNameIdJpa(@RequestBody CategoryRequest nameId) {
+	public ResponseEntity<Category> findByNameId(@RequestBody CategoryRequest nameId) {
 		return new ResponseEntity<>(callService.getRecordByNameId(nameId), HttpStatus.OK);
 	}
 
 	// Delete By Id
 	@DeleteMapping("/deleteCategoryByIdJpa")
-	public ResponseEntity<Convert> deleteJpa(@RequestBody CategoryRequest nameId) {
+	public ResponseEntity<Convert> delete(@RequestBody CategoryRequest nameId) {
 		return new ResponseEntity<>(callService.deleteRecordJpa(nameId), HttpStatus.OK);
 	}
 
