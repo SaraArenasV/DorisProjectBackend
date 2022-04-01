@@ -121,7 +121,7 @@ public class Product {
         this.description=description;
         this.ingressdate=ingressDate;
         this.outgress=outgress;
-        this.active="a";
+        this.active="Y";
         this.idcategory= idCategory;
 }
 
