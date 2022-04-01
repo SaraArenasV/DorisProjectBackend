@@ -16,7 +16,6 @@ import micro.doris.to.Convert;
 
 @Validated
 @Controller
-@CrossOrigin(origins = "*")
 @RequestMapping("/api")
 
 public class CategoryController {

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import micro.doris.viewmodel.UserModel;
 
-@CrossOrigin(origins = "*")
+
 @Validated
 @Api(value = "UserApi", description = "the User API")
 public interface UserApi {

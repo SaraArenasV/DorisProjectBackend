@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Validated
 @Controller
-@CrossOrigin(origins = "*",methods= {RequestMethod.POST,RequestMethod.GET})
 @RequestMapping("${openapi.MicroDoris.base-path:/api/v1/}")
 public class UserApiController implements UserApi {
 

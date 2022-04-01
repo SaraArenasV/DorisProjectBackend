@@ -36,7 +36,7 @@ public class MicroDorisApplication {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/greeting-javaconfig").allowedOrigins("*");
+                registry.addMapping("/*").allowedOrigins("*");
             }
         };
     }
@@ -69,7 +69,6 @@ public class MicroDorisApplication {
                 .contact(new Contact("", "", ""))
                 .build();
     }
-
 
 
     class BasePathAwareRelativePathProvider extends RelativePathProvider {
