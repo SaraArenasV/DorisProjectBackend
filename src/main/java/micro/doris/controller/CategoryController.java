@@ -24,7 +24,7 @@ public class CategoryController {
 	ICategoryService callService;
 
 	// Find By ID
-	@GetMapping("/getCategoryByIdAndName/")
+	@PostMapping("/getCategoryByIdAndName")
 	public ResponseEntity<Category> findByNameId(@RequestBody CategoryRequest nameId) {
 		return new ResponseEntity<>(callService.getRecordByNameId(nameId), HttpStatus.OK);
 	}
@@ -34,7 +34,6 @@ public class CategoryController {
 	public ResponseEntity<Convert> delete(@RequestBody CategoryRequest nameId) {
 		return new ResponseEntity<>(callService.deleteRecordJpa(nameId), HttpStatus.OK);
 	}
-
 
 	// save
 	@PostMapping ("/category")
