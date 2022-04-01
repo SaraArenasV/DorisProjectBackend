@@ -20,7 +20,7 @@ public class ProductApiController {
     @Autowired
     private ProductService productService;
 
-   
+
     @GetMapping("/getProduct/{sku}")
     public ResponseEntity<?>  findById(@PathVariable(name="sku") String sku) {
         Product product = productService.findProductBySku(sku);
