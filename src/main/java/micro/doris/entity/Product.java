@@ -37,6 +37,10 @@ public class Product {
     @Column(name = "sku")
     private String sku;
 
+    public Product() {
+
+    }
+
     public Integer getIdcategory() {
         return idcategory;
     }
@@ -107,5 +111,18 @@ public class Product {
 
     public void setSku(String sku) {
         this.sku = sku;
-    }
+}
+
+    public Product(String sku, String brand, String description, int stock, Date ingressDate, Date outgress, int idCategory){
+        super();
+        this.sku=sku;
+        this.brand=brand;
+        this.stock=stock;
+        this.description=description;
+        this.ingressdate=ingressDate;
+        this.outgress=outgress;
+        this.active="Y";
+        this.idcategory= idCategory;
+}
+
 }
