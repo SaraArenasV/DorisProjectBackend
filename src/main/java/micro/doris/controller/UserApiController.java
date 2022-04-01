@@ -14,7 +14,7 @@ import micro.doris.viewmodel.UserModel;
 
 @Validated
 @Controller
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("${openapi.MicroDoris.base-path:/api/v1/}")
 public class UserApiController implements UserApi {
 

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*")
 @Validated
 @Controller
 @RequestMapping("/api")
@@ -23,8 +24,8 @@ public class ProductApiController {
     private IProductService service;
 
 
-    @GetMapping("/getProduct/{sku}")
-    public ResponseEntity<?>  findById(@PathVariable(name="sku") String sku) {
+    @GetMapping("/getProductBySku/{sku}")
+    public ResponseEntity<?>  findBySku(@PathVariable(name="sku") String sku) {
         Product product = service.findProductBySku(sku);
         if (product!=null)
         return  new ResponseEntity<> (product, HttpStatus.OK);
