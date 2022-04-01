@@ -32,17 +32,14 @@ public class MicroDorisApplication {
 
 
     @Bean
-    public WebMvcConfigurer webConfigurer() {
+    public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
-
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("*").allowedMethods("*")
-                        .allowedHeaders("Content-Type");
+                registry.addMapping("/greeting-javaconfig").allowedOrigins("*");
             }
         };
     }
-
 
     @Bean
     public Docket customImplementation(ServletContext servletContext, @Value("${openapi.MicroDoris.base-path:/}") String basePath) {
