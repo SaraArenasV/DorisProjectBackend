@@ -29,7 +29,7 @@ public class UserApiController implements UserApi {
     }
 
     @Override
-    @CrossOrigin(origins = "*",methods= {RequestMethod.POST,RequestMethod.GET})
+//    @CrossOrigin(origins = "*",methods= {RequestMethod.POST,RequestMethod.GET})
     public ResponseEntity<Boolean> ValidateUser(@RequestBody UserModel request)  {
        Boolean response = (service.verifyUser(helper.setUser(request)));
 
