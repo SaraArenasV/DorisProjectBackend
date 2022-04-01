@@ -1,11 +1,9 @@
 package micro.doris.controller;
 
 
-import micro.doris.entity.CategoryEntityJpa;
+
 import micro.doris.entity.Product;
-import micro.doris.services.CategoryServices;
 import micro.doris.services.IProductService;
-import micro.doris.services.Impl.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
