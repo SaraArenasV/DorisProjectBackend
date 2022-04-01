@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 @Controller
 @RequestMapping("/api")
-
+@CrossOrigin(origins = "*")
 public class ProductApiController {
 
     @Autowired
