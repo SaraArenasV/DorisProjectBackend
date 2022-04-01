@@ -22,7 +22,7 @@ public class Product {
     private String description;
 
     @Column(name = "stock")
-    private String stock;
+    private Integer stock;
 
     @Column(name = "ingressdate")
     private java.sql.Date ingressdate;
@@ -61,11 +61,11 @@ public class Product {
         this.description = description;
     }
 
-    public String getStock() {
+    public Integer getStock() {
         return stock;
     }
 
-    public void setStock(String stock) {
+    public void setStock(Integer stock) {
         this.stock = stock;
     }
 

@@ -14,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Validated
 @Controller
@@ -29,4 +30,11 @@ public class ProductApiController {
     public ResponseEntity<Product> save(@RequestBody Product request) {
         return new ResponseEntity<>(service.save(request), HttpStatus.OK);
     }
+
+
+    @PostMapping("/addproduct")
+    public ResponseEntity<Product> addProduct(@RequestParam String sku, Integer cantidad) {
+        return new ResponseEntity<>(service.addStock(sku,cantidad), HttpStatus.OK);
+    }
+
 }
