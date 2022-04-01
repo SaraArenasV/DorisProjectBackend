@@ -42,7 +42,7 @@ public class ProductApiController {
         }
 
     }
-
+//
 
     @PostMapping("/addproduct")
     public ResponseEntity<Product> addProduct(@RequestParam String sku, Integer cantidad) {
