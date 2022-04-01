@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Validated
 @Controller
-@CrossOrigin(origins = "*",methods= {RequestMethod.POST,RequestMethod.GET})
+
 @RequestMapping("${openapi.MicroDoris.base-path:/api/v1/}")
 public class UserApiController implements UserApi {
 
@@ -29,6 +29,7 @@ public class UserApiController implements UserApi {
     }
 
     @Override
+//    @CrossOrigin(origins = "*",methods= {RequestMethod.POST,RequestMethod.GET})
     public ResponseEntity<Boolean> ValidateUser(@RequestBody UserModel request)  {
        Boolean response = (service.verifyUser(helper.setUser(request)));
 
