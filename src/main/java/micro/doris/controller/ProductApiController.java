@@ -1,8 +1,9 @@
 package micro.doris.controller;
 
 
-import io.swagger.annotations.ApiOperation;
+
 import micro.doris.entity.Product;
+import micro.doris.services.IProductService;
 import micro.doris.services.Impl.ProductService;
 import micro.doris.viewmodel.ProductModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,12 @@ import org.springframework.web.bind.annotation.*;
 public class ProductApiController {
 
     @Autowired
-    private ProductService productService;
+    private IProductService service;
 
 
     @GetMapping("/getProduct/{sku}")
     public ResponseEntity<?>  findById(@PathVariable(name="sku") String sku) {
-        Product product = productService.findProductBySku(sku);
+        Product product = service.findProductBySku(sku);
         if (product!=null)
         return  new ResponseEntity<> (product, HttpStatus.OK);
         else
@@ -32,13 +33,19 @@ public class ProductApiController {
 
     @PostMapping("/saveProduct")
   public ResponseEntity<?> insert(@RequestBody ProductModel product) {
-        Product productNew = productService.findProductBySku(product.getSku());
+        Product productNew = service.findProductBySku(product.getSku());
         if (productNew!=null){
             return new ResponseEntity<>("El sku ya existe", HttpStatus.NOT_FOUND.OK);
         }else {
-            return new ResponseEntity<>(productService.save(product), HttpStatus.OK);
+            return new ResponseEntity<>(service.save(product), HttpStatus.OK);
         }
 
+    }
+
+
+    @PostMapping("/addproduct")
+    public ResponseEntity<Product> addProduct(@RequestParam String sku, Integer cantidad) {
+        return new ResponseEntity<>(service.addStock(sku,cantidad), HttpStatus.OK);
     }
 
 

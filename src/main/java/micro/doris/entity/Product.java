@@ -1,21 +1,19 @@
 package micro.doris.entity;
 
-
-
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
-@Table(name = "product", schema = "public")
+@Table(name = "product")
 public class Product {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "id")
+    private Integer id;
 
-    @Column(name = "sku")
-    private String sku;
+    @Column(name = "idcategory")
+    private Integer idcategory;
 
     @Column(name = "brand")
     private String brand;
@@ -27,34 +25,28 @@ public class Product {
     private Integer stock;
 
     @Column(name = "ingressdate")
-    private Date ingressDate;
+    private java.sql.Date ingressdate;
 
     @Column(name = "outgress")
-    private Date outgress;
+    private java.sql.Date outgress;
 
     @Column(name = "active")
     private String active;
 
-    @Column(name = "idcategory")
-    private int idCategory;
-  //  @ManyToOne
-    //@JoinColumn(name = "idCategory")
-    //private Category category;
 
-    public int getId() {
-        return id;
+    @Column(name = "sku")
+    private String sku;
+
+    public Product() {
+
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Integer getIdcategory() {
+        return idcategory;
     }
 
-    public String getSku() {
-        return sku;
-    }
-
-    public void setSku(String sku) {
-        this.sku = sku;
+    public void setIdcategory(Integer idcategory) {
+        this.idcategory = idcategory;
     }
 
     public String getBrand() {
@@ -81,20 +73,20 @@ public class Product {
         this.stock = stock;
     }
 
+    public Date getIngressdate() {
+        return ingressdate;
+    }
+
+    public void setIngressdate(Date ingressdate) {
+        this.ingressdate = ingressdate;
+    }
+
     public Date getOutgress() {
         return outgress;
     }
 
     public void setOutgress(Date outgress) {
         this.outgress = outgress;
-    }
-
-    public Date getIngressDate() {
-        return ingressDate;
-    }
-
-    public void setIngressDate(Date ingressDate) {
-        this.ingressDate = ingressDate;
     }
 
     public String getActive() {
@@ -104,9 +96,22 @@ public class Product {
     public void setActive(String active) {
         this.active = active;
     }
-    public Product(){
 
+    public Integer getId() {
+        return id;
     }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
+}
 
     public Product(String sku, String brand, String description, int stock, Date ingressDate, Date outgress, int idCategory){
         super();
@@ -114,9 +119,10 @@ public class Product {
         this.brand=brand;
         this.stock=stock;
         this.description=description;
-        this.ingressDate=ingressDate;
+        this.ingressdate=ingressDate;
         this.outgress=outgress;
         this.active="a";
-        this.idCategory= idCategory;
+        this.idcategory= idCategory;
 }
+
 }

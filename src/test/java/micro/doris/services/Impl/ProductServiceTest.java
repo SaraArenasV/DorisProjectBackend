@@ -13,7 +13,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import static org.junit.Assert.assertEquals;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Date;
+import java.util.Calendar;
+import java.sql.Date;
 
 @SpringBootTest
 @RunWith(MockitoJUnitRunner.class)
@@ -25,14 +26,5 @@ public class ProductServiceTest {
     ProductService productService;
 
 
-    @Test
-    public void testSave() {
 
-        Date date = new Date();
-        Product product =  new Product("001","122","Harina",12,date,date,1);
-        Mockito.when(productDao.save(product)).thenReturn(product);
-        Product productSave= productDao.save(product);
-        assertEquals(productSave.getSku(),"001" );
-
-    }
 }

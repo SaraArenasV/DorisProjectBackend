@@ -10,4 +10,6 @@ public interface IProductService {
 
    Product findProductBySku(String sku);
 
+    Product addStock(String sku, Integer cantidad);
+
 }

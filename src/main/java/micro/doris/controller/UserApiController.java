@@ -11,7 +11,6 @@ import micro.doris.services.IUserService;
 
 import micro.doris.viewmodel.UserModel;
 
-//
 @Validated
 @Controller
 @RequestMapping("${openapi.MicroDoris.base-path:/api/v1/}")
@@ -25,8 +24,6 @@ public class UserApiController implements UserApi {
         this.service = service;
         this.helper = helper;
     }
-
-
 
     @Override
     public ResponseEntity<Boolean> ValidateUser(@RequestBody UserModel request)  {

@@ -1,6 +1,6 @@
 package micro.doris.viewmodel;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ProductModel {
     private String sku;
