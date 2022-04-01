@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 @Controller
 @RequestMapping("/api")
-
 public class ProductApiController {
 
     @Autowired
