@@ -25,8 +25,6 @@ public class UserApiController implements UserApi {
         this.helper = helper;
     }
 
-
-
     @Override
     public ResponseEntity<Boolean> ValidateUser(@RequestBody UserModel request)  {
        Boolean response = (service.verifyUser(helper.setUser(request)));

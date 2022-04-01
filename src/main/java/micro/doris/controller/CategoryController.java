@@ -1,5 +1,8 @@
 package micro.doris.controller;
 
+import micro.doris.entity.Category;
+import micro.doris.services.ICategoryService;
+import micro.doris.viewmodel.CategoryRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,9 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
-import micro.doris.entity.Category;
-import micro.doris.viewmodel.CategoryRequest;
-import micro.doris.services.ICategoryService;
+
 import micro.doris.to.Convert;
 
 @Validated
@@ -33,6 +34,7 @@ public class CategoryController {
 	public ResponseEntity<Convert> delete(@RequestBody CategoryRequest nameId) {
 		return new ResponseEntity<>(callService.deleteRecordJpa(nameId), HttpStatus.OK);
 	}
+
 
 	// save
 	@PostMapping ("/category")
