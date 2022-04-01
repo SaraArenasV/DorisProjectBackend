@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import micro.doris.services.IUserService;
 
 import micro.doris.viewmodel.UserModel;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Validated
 @Controller
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*",methods= {RequestMethod.POST,RequestMethod.GET})
 @RequestMapping("${openapi.MicroDoris.base-path:/api/v1/}")
 public class UserApiController implements UserApi {
 
