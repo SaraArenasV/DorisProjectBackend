@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "category", schema = "public")
-public class CategoryEntityJpa {
+public class Category {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class CategoryEntityJpa {
 	@Column(name = "active")
 	private String active;
 
-	public CategoryEntityJpa() {
+	public Category() {
 		super();
 	}
 

@@ -11,7 +11,6 @@ import micro.doris.services.IUserService;
 
 import micro.doris.viewmodel.UserModel;
 
-//
 @Validated
 @Controller
 @RequestMapping("${openapi.MicroDoris.base-path:/api/v1/}")
