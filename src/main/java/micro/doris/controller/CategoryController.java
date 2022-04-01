@@ -10,8 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-
-
 import micro.doris.to.Convert;
 
 @Validated
@@ -25,9 +23,13 @@ public class CategoryController {
 	ICategoryService callService;
 
 	// Find By ID
-	@GetMapping("/getCategoryByIdAndName/")
-	public ResponseEntity<Category> findByNameId(@RequestBody CategoryRequest nameId) {
-		return new ResponseEntity<>(callService.getRecordByNameId(nameId), HttpStatus.OK);
+	@GetMapping("/getCategoryByIdAndName")
+	public ResponseEntity<?> findByNameId(@RequestBody CategoryRequest nameId) {
+		Category category = callService.getRecordByNameId(nameId);
+		if (category != null)
+			return new ResponseEntity<>(category, HttpStatus.OK);
+		else
+			return new ResponseEntity<>("Category does not exist", HttpStatus.OK);
 	}
 
 	// Delete By Id
@@ -36,12 +38,10 @@ public class CategoryController {
 		return new ResponseEntity<>(callService.deleteRecordJpa(nameId), HttpStatus.OK);
 	}
 
-
 	// save
-	@PostMapping ("/category")
+	@PostMapping("/category")
 	public ResponseEntity<Category> save(@RequestBody Category request) {
 		return new ResponseEntity<>(callService.save(request), HttpStatus.OK);
 	}
-
 
 }
