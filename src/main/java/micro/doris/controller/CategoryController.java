@@ -36,7 +36,7 @@ public class CategoryController {
 
 
 	// save
-	@PostMapping ("/deleteCategoryByIdJpa")
+	@PostMapping ("/category")
 	public ResponseEntity<CategoryEntityJpa> save(@RequestBody CategoryEntityJpa requeest) {
 		return new ResponseEntity<>(callService.save(requeest), HttpStatus.OK);
 	}
