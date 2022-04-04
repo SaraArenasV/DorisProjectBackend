@@ -5,8 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UserModel {
 
 
-//    @JsonProperty("id")
-//    private int id ;
+
     @JsonProperty("rut")
     private String rut ;
     @JsonProperty("mail")
@@ -15,14 +14,16 @@ public class UserModel {
     private String password;
     @JsonProperty("active")
     private String active;
-//
-//    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
+    @JsonProperty("username")
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getMail() {
         return mail;
