@@ -1,6 +1,7 @@
 package micro.doris.controller;
 
 import micro.doris.helper.IUserHelper;
+import micro.doris.viewmodel.ValidationUserResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -29,11 +30,10 @@ public class UserApiController implements UserApi {
     }
 
     @Override
-//    @CrossOrigin(origins = "*",methods= {RequestMethod.POST,RequestMethod.GET})
-    public ResponseEntity<Boolean> ValidateUser(@RequestBody UserModel request)  {
-       Boolean response = (service.verifyUser(helper.setUser(request)));
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
+    public ResponseEntity<ValidationUserResponse> ValidateUser(@RequestBody UserModel request)  {
+
+        return new ResponseEntity<>(service.verifyUser(helper.setUser(request)), HttpStatus.OK);
     }
 
 }
