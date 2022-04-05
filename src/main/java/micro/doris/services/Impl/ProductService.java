@@ -18,9 +18,9 @@ public class ProductService implements IProductService {
 
 	@Autowired
 	ProductRepository repository;
-	
+
 	Convert converted = new Convert();
-	
+
 	static final String DELETED = "record deleted";
 	static final String NOT_DELETED = "Record not deleted, please look at log :";
 
@@ -70,5 +70,13 @@ public class ProductService implements IProductService {
 		}
 		return converted;
 	}
+
+
+	@Override
+	public List<Product> findAllProduct() {
+		return repository.findAll();
+	}
+
+
 
 }
