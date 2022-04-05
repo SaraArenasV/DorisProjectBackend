@@ -4,6 +4,8 @@ import javassist.NotFoundException;
 import micro.doris.entity.Product;
 import micro.doris.services.IProductService;
 import micro.doris.services.Impl.ProductService;
+import micro.doris.to.Convert;
+import micro.doris.viewmodel.CategoryRequest;
 import micro.doris.viewmodel.ProductModel;
 
 import java.util.List;
@@ -45,6 +47,13 @@ public class ProductApiController {
 			return new ResponseEntity<>(product, HttpStatus.OK);
 		else
 			return new ResponseEntity<>("Product not have assigned requested category", HttpStatus.OK);
+	}
+	
+	// Delete By Id
+	
+	@DeleteMapping("/deleteProduct/{id}")
+	public ResponseEntity<Convert> delete(@PathVariable(name = "id") Integer id) {
+		return new ResponseEntity<>(service.deleteProductById(id), HttpStatus.OK);
 	}
 
 	@PostMapping("/saveProduct")
