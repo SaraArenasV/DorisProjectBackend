@@ -1,5 +1,6 @@
 package micro.doris.controller;
 
+import javassist.NotFoundException;
 import micro.doris.entity.Product;
 import micro.doris.services.IProductService;
 import micro.doris.services.Impl.ProductService;
@@ -8,11 +9,16 @@ import micro.doris.viewmodel.ProductModel;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+
+import static java.util.stream.Collectors.toList;
 
 @CrossOrigin(origins = "*")
 @Validated
@@ -57,4 +63,11 @@ public class ProductApiController {
 		return new ResponseEntity<>(service.addStock(sku, cantidad), HttpStatus.OK);
 	}
 
+	@GetMapping("/getproductlist")
+	public ResponseEntity<List<Product>> getProducts() throws NotFoundException {
+
+
+
+		return new ResponseEntity<>(service.findAllProduct(), HttpStatus.OK );
+	}
 }

@@ -15,4 +15,5 @@ public interface IProductService {
 
 	Product addStock(String sku, Integer cantidad);
 
+	List<Product> findAllProduct();
 }

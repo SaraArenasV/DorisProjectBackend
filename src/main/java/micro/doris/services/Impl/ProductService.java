@@ -45,4 +45,12 @@ public class ProductService implements IProductService {
 		return repository.findByIdcategory(id);
 	}
 
+
+	@Override
+	public List<Product> findAllProduct() {
+		return repository.findAll();
+	}
+
+
+
 }

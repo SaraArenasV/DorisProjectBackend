@@ -10,7 +10,7 @@ public class ProductModel {
     private Date ingressDate;
     private Date outgress;
     private int idCategory;
-
+    private boolean filterdisponibilid;
     public String getSku() {
         return sku;
     }
