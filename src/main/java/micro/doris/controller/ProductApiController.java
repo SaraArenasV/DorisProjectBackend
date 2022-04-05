@@ -1,18 +1,26 @@
 package micro.doris.controller;
 
+import javassist.NotFoundException;
 import micro.doris.entity.Product;
 import micro.doris.services.IProductService;
 import micro.doris.services.Impl.ProductService;
+import micro.doris.to.Convert;
+import micro.doris.viewmodel.CategoryRequest;
 import micro.doris.viewmodel.ProductModel;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+
+import static java.util.stream.Collectors.toList;
 
 @CrossOrigin(origins = "*")
 @Validated
@@ -40,6 +48,13 @@ public class ProductApiController {
 		else
 			return new ResponseEntity<>("Product not have assigned requested category", HttpStatus.OK);
 	}
+	
+	// Delete By Id
+	
+	@DeleteMapping("/deleteProduct/{id}")
+	public ResponseEntity<Convert> delete(@PathVariable(name = "id") Integer id) {
+		return new ResponseEntity<>(service.deleteProductById(id), HttpStatus.OK);
+	}
 
 	@PostMapping("/saveProduct")
 	public ResponseEntity<?> insert(@RequestBody ProductModel product) {
@@ -57,4 +72,8 @@ public class ProductApiController {
 		return new ResponseEntity<>(service.addStock(sku, cantidad), HttpStatus.OK);
 	}
 
+	@GetMapping("/getproductlist")
+	public ResponseEntity<List<Product>> getListProducts()  {
+		return new ResponseEntity<>(service.findAllProduct(), HttpStatus.OK );
+	}
 }
