@@ -73,10 +73,7 @@ public class ProductApiController {
 	}
 
 	@GetMapping("/getproductlist")
-	public ResponseEntity<List<Product>> getProducts() throws NotFoundException {
-
-
-
+	public ResponseEntity<List<Product>> getListProducts()  {
 		return new ResponseEntity<>(service.findAllProduct(), HttpStatus.OK );
 	}
 }
