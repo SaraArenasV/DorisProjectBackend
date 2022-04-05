@@ -5,6 +5,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import micro.doris.viewmodel.ValidationUserResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,7 +31,7 @@ public interface UserApi {
             produces = { "application/json" },
             consumes = { "application/json" },
             method = RequestMethod.POST)
-    ResponseEntity<Boolean> ValidateUser(@RequestBody UserModel request);
+    ResponseEntity<ValidationUserResponse> ValidateUser(@RequestBody UserModel request);
 
 
 }
