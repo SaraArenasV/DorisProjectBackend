@@ -24,12 +24,9 @@ public class ProductService implements IProductService {
 	static final String DELETED = "record deleted";
 	static final String NOT_DELETED = "Record not deleted, please look at log :";
 
-	public Product save(ProductModel productFront) {
-		Product product = new Product(productFront.getSku(), productFront.getBrand(), productFront.getDescription(),
-				productFront.getStock(), productFront.getIngressDate(), productFront.getOutgress(),
-				productFront.getIdCategory());
-
-		return repository.save(product);
+	public Product save(Product productFront) {
+		productFront.setIngressdate(Date.valueOf("2022-04-06"));
+		return repository.save(productFront);
 	}
 
 	public Product findProductBySku(String sku) {

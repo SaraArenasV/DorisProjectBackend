@@ -8,7 +8,7 @@ import micro.doris.viewmodel.ProductModel;
 
 public interface IProductService {
 
-	Product save(ProductModel product);
+	Product save(Product product);
 
 	Product findProductBySku(String sku);
 	

@@ -2,6 +2,7 @@ package micro.doris.controller;
 
 import javassist.NotFoundException;
 import micro.doris.entity.Product;
+import micro.doris.helper.IProductHelper;
 import micro.doris.services.IProductService;
 import micro.doris.services.Impl.ProductService;
 import micro.doris.to.Convert;
@@ -10,6 +11,7 @@ import micro.doris.viewmodel.ProductModel;
 
 import java.util.List;
 
+import micro.doris.viewmodel.ProductModelRequesst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.http.HttpStatus;
@@ -30,6 +32,12 @@ public class ProductApiController {
 
 	@Autowired
 	private IProductService service;
+
+	private IProductHelper helper;
+
+	public ProductApiController(IProductHelper helper) {
+		this.helper = helper;
+	}
 
 	@GetMapping("/getProduct/{sku}")
 	public ResponseEntity<?> findById(@PathVariable(name = "sku") String sku) {
@@ -57,18 +65,18 @@ public class ProductApiController {
 	}
 
 	@PostMapping("/saveProduct")
-	public ResponseEntity<?> insert(@RequestBody ProductModel product) {
+	public ResponseEntity<?> insert(@RequestBody ProductModelRequesst product) {
 		Product productNew = service.findProductBySku(product.getSku());
 		if (productNew != null) {
 			return new ResponseEntity<>("El sku ya existe", HttpStatus.NOT_FOUND.OK);
 		} else {
-			return new ResponseEntity<>(service.save(product), HttpStatus.OK);
+			return new ResponseEntity<>(service.save(helper.setProduct(product)), HttpStatus.OK);
 		}
 
 	}
 
-	@PostMapping("/addproduct")
-	public ResponseEntity<Product> addProduct(@RequestParam String sku, Integer cantidad) {
+	@PostMapping("/addstock")
+	public ResponseEntity<Product> addProduct(@RequestBody String sku, Integer cantidad) {
 		return new ResponseEntity<>(service.addStock(sku, cantidad), HttpStatus.OK);
 	}
 

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.sql.Date;
 
-public class ProductModel {
+public class ProductModelRequesst {
 
     @JsonProperty("sku")
     private String sku;
@@ -14,9 +14,10 @@ public class ProductModel {
     private String description;
     @JsonProperty("stock")
     private Integer stock;
-    private java.sql.Date ingressDate;
-    private java.sql.Date outgress;
-    private int idCategory;
+    @JsonProperty("idCategory")
+    private Integer idCategory;
+
+
     public String getSku() {
         return sku;
     }
@@ -49,38 +50,11 @@ public class ProductModel {
         this.stock = stock;
     }
 
-    public Date getIngressDate() {
-        return ingressDate;
-    }
-
-    public void setIngressDate(Date ingressDate) {
-        this.ingressDate = ingressDate;
-    }
-
-    public Date getOutgress() {
-        return outgress;
-    }
-
-    public void setOutgress(Date outgress) {
-        this.outgress = outgress;
-    }
-
-    public int getIdCategory() {
+    public Integer getIdCategory() {
         return idCategory;
     }
 
-    public void setIdCategory(int idCategory) {
+    public void setIdCategory(Integer idCategory) {
         this.idCategory = idCategory;
-    }
-
-    public ProductModel(String sku, String brand, String description, int stock, Date ingressDate, Date outgress, int idCategory){
-        super();
-        this.sku=sku;
-        this.brand=brand;
-        this.stock=stock;
-        this.description=description;
-        this.ingressDate=ingressDate;
-        this.outgress=outgress;
-        this.idCategory= idCategory;
     }
 }

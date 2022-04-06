@@ -11,7 +11,7 @@ public class UserHelper implements IUserHelper {
     @Override
     public UserModel setUser(User input) {
         UserModel data = new UserModel();
-       data.setUsername(input.getUsername());
+        data.setUsername(input.getUsername());
         data.setRut(input.getRut());
         data.setMail(input.getMail());
         data.setActive(input.getActive());
