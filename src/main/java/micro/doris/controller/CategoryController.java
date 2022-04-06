@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import micro.doris.to.Convert;
 
+import java.util.List;
+
 @Validated
 @Controller
 
@@ -44,4 +46,8 @@ public class CategoryController {
 		return new ResponseEntity<>(callService.save(request), HttpStatus.OK);
 	}
 
+	@GetMapping("/getCategoryList")
+	ResponseEntity<List<Category>> getListCategory()  {
+		return new ResponseEntity<>(callService.findAll(), HttpStatus.OK );
+	}
 }
