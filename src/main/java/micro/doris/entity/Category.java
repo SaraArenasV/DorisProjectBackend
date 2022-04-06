@@ -22,6 +22,9 @@ public class Category {
 	@Column(name = "active")
 	private String active;
 
+	@Column(name = "description")
+	private String description;
+
 	public Category() {
 		super();
 	}
@@ -50,4 +53,7 @@ public class Category {
 		this.active = active;
 	}
 
+	public String getDescription() {return description;}
+
+	public void setDescription(String description) {this.description = description;}
 }

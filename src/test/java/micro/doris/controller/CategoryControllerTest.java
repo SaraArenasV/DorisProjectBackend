@@ -58,7 +58,7 @@ class CategoryControllerTest {
 		assertEquals(code.toString(), OK);
 	}
 
-
+	
 	@Test
 	public void mockFindByNameIdJpa() {
 		CategoryRequest req = new CategoryRequest();
@@ -70,13 +70,14 @@ class CategoryControllerTest {
 		customer.setName("wood");
 
 		Mockito.when(categoryService.getRecordByNameId(req)).thenReturn(customer);
-		ResponseEntity<Category> callResult = controller.findByNameId(req);
+		ResponseEntity<?> callResult = controller.findByNameId(req);
 		HttpStatus code = callResult.getStatusCode();
-		Integer id = callResult.getBody().getId();
+		Integer id = ((Category) callResult.getBody()).getId();
 
 		assertEquals(id.toString(), ID);
 		assertEquals(code.toString(), OK);
 	}
+	
 	
 
 }

@@ -1,6 +1,7 @@
 package micro.doris.controller;
 
 import micro.doris.helper.IUserHelper;
+import micro.doris.viewmodel.ValidationUserResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -11,10 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import micro.doris.services.IUserService;
 
 import micro.doris.viewmodel.UserModel;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Validated
 @Controller
-@CrossOrigin(origins = "*", maxAge = 3600)
+
 @RequestMapping("${openapi.MicroDoris.base-path:/api/v1/}")
 public class UserApiController implements UserApi {
 
@@ -28,10 +30,10 @@ public class UserApiController implements UserApi {
     }
 
     @Override
-    public ResponseEntity<Boolean> ValidateUser(@RequestBody UserModel request)  {
-       Boolean response = (service.verifyUser(helper.setUser(request)));
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
+    public ResponseEntity<ValidationUserResponse> ValidateUser(@RequestBody UserModel request)  {
+
+        return new ResponseEntity<>(service.verifyUser(helper.setUser(request)), HttpStatus.OK);
     }
 
 }
