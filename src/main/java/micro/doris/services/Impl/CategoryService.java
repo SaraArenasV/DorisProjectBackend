@@ -99,4 +99,8 @@ public class CategoryService implements ICategoryService {
 		return repository.save(request);
 	}
 
+	public List<Category> findAll(){
+		return repository.findAll();
+	}
+
 }
