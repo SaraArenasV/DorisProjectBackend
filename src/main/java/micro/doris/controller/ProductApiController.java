@@ -5,6 +5,7 @@ import micro.doris.entity.Product;
 import micro.doris.services.IProductService;
 import micro.doris.services.Impl.ProductService;
 import micro.doris.to.Convert;
+import micro.doris.to.ProductCategory;
 import micro.doris.viewmodel.CategoryRequest;
 import micro.doris.viewmodel.ProductModel;
 
@@ -75,5 +76,10 @@ public class ProductApiController {
 	@GetMapping("/getproductlist")
 	public ResponseEntity<List<Product>> getListProducts()  {
 		return new ResponseEntity<>(service.findAllProduct(), HttpStatus.OK );
+	}
+
+	@GetMapping("/getproductsCategory")
+	public ResponseEntity<List<ProductCategory>> getProductsWithCategoryName()  {
+		return new ResponseEntity<>(service.findAllProductCategory(), HttpStatus.OK );
 	}
 }
