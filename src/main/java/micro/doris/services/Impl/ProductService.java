@@ -91,13 +91,12 @@ public class ProductService implements IProductService {
             for (int i = 0; i < allProducts.size(); i++) {
                 Product product = allProducts.get(i);
                 Integer idCategory = product.getIdcategory();
-                Category categoryEntity = categoryRepository.getById(idCategory);
-
+                      Category categoryEntity = categoryRepository.getById(idCategory);
+				ProductCategory productAndCategory = new ProductCategory();
                 try {
 
                     if (categoryEntity != null && categoryEntity.getId() != null) {
 
-                        ProductCategory productAndCategory = new ProductCategory();
                         productAndCategory.setId(product.getId());
                         productAndCategory.setIdcategory(product.getIdcategory());
                         productAndCategory.setCategoryName(categoryEntity.getName());
@@ -111,10 +110,26 @@ public class ProductService implements IProductService {
 
                         response.add(productAndCategory);
                     } else {
-                        System.out.println("there is no product with this idCategory");
+
+                        System.out.println("there is no category");
                     }
                 } catch (RuntimeException e) {
                     System.out.println(e.getMessage());
+
+
+					productAndCategory.setId(product.getId());
+					productAndCategory.setIdcategory(product.getIdcategory());
+					productAndCategory.setCategoryName(" ");
+					productAndCategory.setBrand(product.getBrand());
+					productAndCategory.setDescription(product.getDescription());
+					productAndCategory.setStock(product.getStock());
+					productAndCategory.setIngressdate(product.getIngressdate());
+					productAndCategory.setOutgress(product.getOutgress());
+					productAndCategory.setActive(product.getActive());
+					productAndCategory.setSku(product.getSku());
+					System.out.println("there is no category assigned for product with categoryId = " + product.getIdcategory());
+					response.add(productAndCategory);
+
                 }
             }
         } catch (RuntimeException e) {
