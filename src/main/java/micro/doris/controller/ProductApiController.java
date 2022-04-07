@@ -29,57 +29,64 @@ import static java.util.stream.Collectors.toList;
 @RequestMapping("/api")
 public class ProductApiController {
 
-	@Autowired
-	private IProductService service;
+    @Autowired
+    private IProductService service;
 
-	@GetMapping("/getProduct/{sku}")
-	public ResponseEntity<?> findById(@PathVariable(name = "sku") String sku) {
-		Product product = service.findProductBySku(sku);
-		if (product != null)
-			return new ResponseEntity<>(product, HttpStatus.OK);
-		else
-			return new ResponseEntity<>("El sku no existe", HttpStatus.OK);
-	}
+    @GetMapping("/getProduct/{sku}")
+    public ResponseEntity<?> findById(@PathVariable(name = "sku") String sku) {
+        Product product = service.findProductBySku(sku);
+        if (product != null)
+            return new ResponseEntity<>(product, HttpStatus.OK);
+        else
+            return new ResponseEntity<>("El sku no existe", HttpStatus.OK);
+    }
 
-	@GetMapping("/getProductByIdList/{id}")
-	public ResponseEntity<?> findByIdsl(@PathVariable(name = "id") Integer id) {
-		List<Product> product = service.findProductById(id);
-		if (product.size() > 0)
-			return new ResponseEntity<>(product, HttpStatus.OK);
-		else
-			return new ResponseEntity<>("Product not have assigned requested category", HttpStatus.OK);
-	}
-	
-	// Delete By Id
-	
-	@DeleteMapping("/deleteProduct/{id}")
-	public ResponseEntity<Convert> delete(@PathVariable(name = "id") Integer id) {
-		return new ResponseEntity<>(service.deleteProductById(id), HttpStatus.OK);
-	}
+    @GetMapping("/getProductByIdList/{id}")
+    public ResponseEntity<?> findByIdsl(@PathVariable(name = "id") Integer id) {
+        List<Product> product = service.findProductById(id);
+        if (product.size() > 0)
+            return new ResponseEntity<>(product, HttpStatus.OK);
+        else
+            return new ResponseEntity<>("Product not have assigned requested category", HttpStatus.OK);
+    }
 
-	@PostMapping("/saveProduct")
-	public ResponseEntity<?> insert(@RequestBody ProductModel product) {
-		Product productNew = service.findProductBySku(product.getSku());
-		if (productNew != null) {
-			return new ResponseEntity<>("El sku ya existe", HttpStatus.NOT_FOUND.OK);
-		} else {
-			return new ResponseEntity<>(service.save(product), HttpStatus.OK);
-		}
+    // Delete By Id
 
-	}
+    @DeleteMapping("/deleteProduct/{id}")
+    public ResponseEntity<Convert> delete(@PathVariable(name = "id") Integer id) {
+        return new ResponseEntity<>(service.deleteProductById(id), HttpStatus.OK);
+    }
 
-	@PostMapping("/addproduct")
-	public ResponseEntity<Product> addProduct(@RequestParam String sku, Integer cantidad) {
-		return new ResponseEntity<>(service.addStock(sku, cantidad), HttpStatus.OK);
-	}
+    @PostMapping("/saveProduct")
+    public ResponseEntity<?> insert(@RequestBody ProductModel product) {
+        Product productNew = service.findProductBySku(product.getSku());
+        if (productNew != null) {
+            return new ResponseEntity<>("El sku ya existe", HttpStatus.NOT_FOUND.OK);
+        } else {
+            return new ResponseEntity<>(service.save(product), HttpStatus.OK);
+        }
 
-	@GetMapping("/getproductlist")
-	public ResponseEntity<List<Product>> getListProducts()  {
-		return new ResponseEntity<>(service.findAllProduct(), HttpStatus.OK );
-	}
+    }
 
-	@GetMapping("/getproductsCategory")
-	public ResponseEntity<List<ProductCategory>> getProductsWithCategoryName()  {
-		return new ResponseEntity<>(service.findAllProductCategory(), HttpStatus.OK );
-	}
+    @PostMapping("/addproduct")
+    public ResponseEntity<Product> addProduct(@RequestParam String sku, Integer cantidad) {
+        return new ResponseEntity<>(service.addStock(sku, cantidad), HttpStatus.OK);
+    }
+
+    @GetMapping("/getproductlist")
+    public ResponseEntity<List<Product>> getListProducts() {
+        return new ResponseEntity<>(service.findAllProduct(), HttpStatus.OK);
+    }
+
+    @GetMapping("/getproductsCategory")
+    public ResponseEntity<?> getProductsWithCategoryName() {
+        Convert convert = new Convert();
+        List<ProductCategory> response = service.findAllProductCategory();
+        if (response.size() > 0)
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        else
+            convert.setMessage("Product table is empty");
+        convert.setSuccess(false);
+        return new ResponseEntity<>(convert, HttpStatus.OK);
+    }
 }
