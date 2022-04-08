@@ -39,6 +39,12 @@ public class CategoryService implements ICategoryService {
 		return res;
 	}
 
+	@Override
+	public Category getRecordByName(String request) {
+		Category res = repository.findByName(request);
+		return res;
+	}
+
 	public Convert deleteRecordJpa(CategoryRequest nameId) {
 
 		if (validateCategory(nameId)) {
@@ -97,6 +103,10 @@ public class CategoryService implements ICategoryService {
 	public Category save(Category request) {
 
 		return repository.save(request);
+	}
+
+	public List<Category> findAll(){
+		return repository.findAll();
 	}
 
 }

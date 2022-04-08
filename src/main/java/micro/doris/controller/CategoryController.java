@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import micro.doris.to.Convert;
 
+import java.util.List;
+
 @Validated
 @Controller
 
@@ -25,6 +27,7 @@ public class CategoryController {
 	// Find By ID
 	@GetMapping("/getCategoryByIdAndName")
 	public ResponseEntity<?> findByNameId(@RequestBody CategoryRequest nameId) {
+
 		Category category = callService.getRecordByNameId(nameId);
 		if (category != null)
 			return new ResponseEntity<>(category, HttpStatus.OK);
@@ -40,8 +43,18 @@ public class CategoryController {
 
 	// save
 	@PostMapping("/category")
-	public ResponseEntity<Category> save(@RequestBody Category request) {
-		return new ResponseEntity<>(callService.save(request), HttpStatus.OK);
+	public ResponseEntity<?> save(@RequestBody Category request) {
+    Category category = callService.getRecordByName(request.getName()) ;
+		if (category != null) {
+			return new ResponseEntity<>("El name ya existe", HttpStatus.NOT_FOUND.OK);
+		} else{
+			return new ResponseEntity<>(callService.save(request), HttpStatus.OK);
+		}
+
 	}
 
+	@GetMapping("/getCategoryList")
+	ResponseEntity<List<Category>> getListCategory()  {
+		return new ResponseEntity<>(callService.findAll(), HttpStatus.OK );
+	}
 }

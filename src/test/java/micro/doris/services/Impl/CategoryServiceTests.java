@@ -14,6 +14,9 @@ import micro.doris.viewmodel.CategoryRequest;
 import micro.doris.repository.CategoryRepository;
 import micro.doris.to.Convert;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -61,6 +64,29 @@ class CategoryServiceTests {
 		Category response = categoryServiceImpl.getRecordByNameId(req);
 
 		assertNotNull("The object you enter return null", response.getName());
+	}
+
+	@Test
+	public void mockGetRecordList() {
+		List<Category> categoryList = new ArrayList<>();
+		Category category = new Category();
+		category.setActive("Y");
+		category.setId(1);
+		category.setName("Test Forest name");
+		categoryList.add(category);
+
+		category = new Category();
+		category.setActive("Y");
+		category.setId(2);
+		category.setName("Test");
+		categoryList.add(category);
+
+		Mockito.when(usersRepositoryJpa.findAll()).thenReturn(categoryList);
+
+		List<Category> categoryListNew = usersRepositoryJpa.findAll();
+
+		assertEquals(categoryListNew.size(),2 );
+
 	}
 
 }
