@@ -34,7 +34,7 @@ public class ProductServiceTest {
 
     @Test
     public void testGet() {
-        Product product = new Product("l9383", "122", "Harina", 12, date, date, 1);
+        Product product = new Product("l9383", "122", "Harina", 12, date, date, 1," ");
         Mockito.when(productDao.getBySku("l9383")).thenReturn(product);
         Product productSave = productService.findProductBySku("l9383");
         assertEquals(productSave.getSku(), "l9383");
@@ -44,7 +44,7 @@ public class ProductServiceTest {
     @Test
     public void testSave() {
 
-        Product product = new Product("001", "122", "Harina", 12, date, date, 1);
+        Product product = new Product("001", "122", "Harina", 12, date, date, 1," ");
         Mockito.when(productDao.save(product)).thenReturn(product);
         Product productSave = productDao.save(product);
         assertEquals(productSave.getSku(), "001");
@@ -54,7 +54,7 @@ public class ProductServiceTest {
     @Test
     public void testDeleteOk() {
 
-        Product product = new Product("001", "122", "Harina", 12, date, date, 1);
+        Product product = new Product("001", "122", "Harina", 12, date, date, 1, " ");
         product.setId(REQUEST_ID);
         Optional<Product> response = Optional.of(product);
 

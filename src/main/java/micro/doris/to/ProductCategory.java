@@ -30,8 +30,13 @@ public class ProductCategory {
 
     private String sku;
 
+    private String name;
 
 
+
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
 
 	public Integer getId() {
         return id;
@@ -113,7 +118,7 @@ public class ProductCategory {
         this.sku = sku;
     }
 
-	public ProductCategory(Integer id, Integer idcategory, String categoryName, String brand, String description, Integer stock, Date ingressdate, Date outgress, String active, String sku) {
+	public ProductCategory(Integer id, Integer idcategory, String categoryName, String brand, String description, Integer stock, Date ingressdate, Date outgress, String active, String sku, String name) {
 		this.id = id;
 		this.idcategory = idcategory;
 		this.categoryName = categoryName;
@@ -124,6 +129,7 @@ public class ProductCategory {
 		this.outgress = outgress;
 		this.active = active;
 		this.sku = sku;
+		this.name = name;
 	}
 
 

@@ -39,7 +39,7 @@ public class ProductService implements IProductService {
     public Product save(ProductModel productFront) {
         Product product = new Product(productFront.getSku(), productFront.getBrand(), productFront.getDescription(),
                 productFront.getStock(),Date.valueOf(CalendarUtil.todayString()) , productFront.getOutgress(),
-                productFront.getIdCategory());
+                productFront.getIdCategory(),productFront.getName());
 
 
         return repository.save(product);
