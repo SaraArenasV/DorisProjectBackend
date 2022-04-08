@@ -14,6 +14,7 @@ import micro.doris.to.Convert;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @Validated
 @Controller
 
