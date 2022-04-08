@@ -82,11 +82,12 @@ public class ProductApiController {
     public ResponseEntity<?> getProductsWithCategoryName() {
         Convert convert = new Convert();
         List<ProductCategory> response = service.findAllProductCategory();
-        if (response.size() > 0)
+        if (response.size() > 0) {
             return new ResponseEntity<>(response, HttpStatus.OK);
-        else
+        } else {
             convert.setMessage("Product table is empty");
-        convert.setSuccess(false);
-        return new ResponseEntity<>(convert, HttpStatus.OK);
+            convert.setSuccess(false);
+            return new ResponseEntity<>(convert, HttpStatus.OK);
+        }
     }
 }
