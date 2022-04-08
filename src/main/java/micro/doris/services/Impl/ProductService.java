@@ -2,6 +2,8 @@ package micro.doris.services.Impl;
 
 import micro.doris.entity.Category;
 import micro.doris.entity.Product;
+import micro.doris.helper.ICategoryHelper;
+import micro.doris.helper.impl.CategoryHelper;
 import micro.doris.repository.CategoryRepository;
 import micro.doris.repository.ProductRepository;
 import micro.doris.services.IProductService;
@@ -25,6 +27,9 @@ public class ProductService implements IProductService {
 
     @Autowired
     CategoryRepository categoryRepository;
+
+    @Autowired
+    ICategoryHelper categoryHelper;
 
     Convert converted = new Convert();
 
@@ -85,56 +90,6 @@ public class ProductService implements IProductService {
 
     @Override
     public List<ProductCategory> findAllProductCategory() {
-        List<ProductCategory> response = new ArrayList<>();
-        try {
-            List<Product> allProducts = findAllProduct();
-            for (int i = 0; i < allProducts.size(); i++) {
-                Product product = allProducts.get(i);
-                Integer idCategory = product.getIdcategory();
-                      Category categoryEntity = categoryRepository.getById(idCategory);
-				ProductCategory productAndCategory = new ProductCategory();
-                try {
-
-                    if (categoryEntity != null && categoryEntity.getId() != null) {
-
-                        productAndCategory.setId(product.getId());
-                        productAndCategory.setIdcategory(product.getIdcategory());
-                        productAndCategory.setCategoryName(categoryEntity.getName());
-                        productAndCategory.setBrand(product.getBrand());
-                        productAndCategory.setDescription(product.getDescription());
-                        productAndCategory.setStock(product.getStock());
-                        productAndCategory.setIngressdate(product.getIngressdate());
-                        productAndCategory.setOutgress(product.getOutgress());
-                        productAndCategory.setActive(product.getActive());
-                        productAndCategory.setSku(product.getSku());
-
-                        response.add(productAndCategory);
-                    } else {
-
-                        System.out.println("there is no category");
-                    }
-                } catch (RuntimeException e) {
-                    System.out.println(e.getMessage());
-
-
-					productAndCategory.setId(product.getId());
-					productAndCategory.setIdcategory(product.getIdcategory());
-					productAndCategory.setCategoryName(" ");
-					productAndCategory.setBrand(product.getBrand());
-					productAndCategory.setDescription(product.getDescription());
-					productAndCategory.setStock(product.getStock());
-					productAndCategory.setIngressdate(product.getIngressdate());
-					productAndCategory.setOutgress(product.getOutgress());
-					productAndCategory.setActive(product.getActive());
-					productAndCategory.setSku(product.getSku());
-					System.out.println("there is no category assigned for product with categoryId = " + product.getIdcategory());
-					response.add(productAndCategory);
-
-                }
-            }
-        } catch (RuntimeException e) {
-            System.out.println("doris have exception " + e.getMessage());
-        }
-        return response;
+        return categoryHelper.getProductsWithCategoryName();
     }
 }
