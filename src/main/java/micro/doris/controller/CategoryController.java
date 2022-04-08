@@ -44,7 +44,9 @@ public class CategoryController {
 	// save
 	@PostMapping("/category")
 	public ResponseEntity<?> save(@RequestBody Category request) {
-    Category category = callService.getRecordByName(request.getName()) ;
+		request.setName(request.getName().toLowerCase());
+    Category category = callService.getRecordByName(request.getName().toLowerCase()) ;
+
 		if (category != null) {
 			return new ResponseEntity<>("Category name is exist", HttpStatus.NOT_FOUND.OK);
 		} else{
