@@ -4,6 +4,7 @@ import java.util.List;
 
 import micro.doris.entity.Product;
 import micro.doris.to.Convert;
+import micro.doris.to.ProductCategory;
 import micro.doris.viewmodel.ProductModel;
 
 public interface IProductService {
@@ -19,4 +20,6 @@ public interface IProductService {
 	Product addStock(String sku, Integer cantidad);
 
 	List<Product> findAllProduct();
+
+	List<ProductCategory> findAllProductCategory();
 }
