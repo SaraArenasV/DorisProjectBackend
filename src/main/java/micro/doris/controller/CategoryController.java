@@ -46,7 +46,7 @@ public class CategoryController {
 	public ResponseEntity<?> save(@RequestBody Category request) {
     Category category = callService.getRecordByName(request.getName()) ;
 		if (category != null) {
-			return new ResponseEntity<>("El name ya existe", HttpStatus.NOT_FOUND.OK);
+			return new ResponseEntity<>("Category name is exist", HttpStatus.NOT_FOUND.OK);
 		} else{
 			return new ResponseEntity<>(callService.save(request), HttpStatus.OK);
 		}
