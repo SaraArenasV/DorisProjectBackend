@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
 	public Category findByIdAndName(Integer id, String Name);
-
+	public Category findByName (String name);
 
 }

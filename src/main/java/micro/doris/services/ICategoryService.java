@@ -10,6 +10,8 @@ public interface ICategoryService {
 
 	Category getRecordByNameId(CategoryRequest nameId);
 
+	Category getRecordByName(String  request);
+
 	Convert deleteRecordJpa(CategoryRequest nameId);
 
 	Category save(Category request);
