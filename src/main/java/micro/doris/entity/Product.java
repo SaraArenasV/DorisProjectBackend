@@ -33,9 +33,11 @@ public class Product {
     @Column(name = "active")
     private String active;
 
-
     @Column(name = "sku")
     private String sku;
+
+    @Column(name = "name")
+    private String name;
 
     public Product() {
 
@@ -73,9 +75,7 @@ public class Product {
         this.stock = stock;
     }
 
-    public Date getIngressdate() {
-        return ingressdate;
-    }
+    public Date getIngressdate() { return ingressdate; }
 
     public void setIngressdate(Date ingressdate) {
         this.ingressdate = ingressdate;
@@ -111,18 +111,23 @@ public class Product {
 
     public void setSku(String sku) {
         this.sku = sku;
-}
+    }
 
-    public Product(String sku, String brand, String description, int stock, Date ingressDate, Date outgress, int idCategory){
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
+
+    public Product(String sku, String brand, String description, int stock, Date ingressDate, Date outgress, int idCategory, String name) {
         super();
-        this.sku=sku;
-        this.brand=brand;
-        this.stock=stock;
-        this.description=description;
-        this.ingressdate=ingressDate;
-        this.outgress=outgress;
-        this.active="Y";
-        this.idcategory= idCategory;
-}
+        this.sku = sku;
+        this.brand = brand;
+        this.stock = stock;
+        this.description = description;
+        this.ingressdate = ingressDate;
+        this.outgress = outgress;
+        this.active = "Y";
+        this.idcategory = idCategory;
+        this.name = name;
+    }
 
 }

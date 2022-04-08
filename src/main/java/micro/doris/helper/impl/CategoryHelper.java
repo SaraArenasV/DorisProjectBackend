@@ -47,6 +47,7 @@ public class CategoryHelper implements ICategoryHelper {
                         productAndCategory.setOutgress(product.getOutgress());
                         productAndCategory.setActive(product.getActive());
                         productAndCategory.setSku(product.getSku());
+                        productAndCategory.setName(product.getName());
 
                         response.add(productAndCategory);
 
@@ -62,6 +63,7 @@ public class CategoryHelper implements ICategoryHelper {
                         productAndCategory.setOutgress(product.getOutgress());
                         productAndCategory.setActive(product.getActive());
                         productAndCategory.setSku(product.getSku());
+                        productAndCategory.setName(product.getName());
 
                         System.out.println("there is no category, empty string is assigned for categoryName, ID category from product is = " + product.getIdcategory());
 
@@ -94,5 +96,4 @@ public class CategoryHelper implements ICategoryHelper {
         }
         return categoryExist;
     }
-
 }

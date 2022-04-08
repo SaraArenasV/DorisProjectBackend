@@ -11,6 +11,12 @@ public class ProductModel {
     private Date outgress;
     private int idCategory;
     private boolean filterdisponibilid;
+    private String name;
+
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
+
     public String getSku() {
         return sku;
     }
@@ -67,7 +73,7 @@ public class ProductModel {
         this.idCategory = idCategory;
     }
 
-    public ProductModel(String sku, String brand, String description, int stock, Date ingressDate, Date outgress, int idCategory){
+    public ProductModel(String sku, String brand, String description, int stock, Date ingressDate, Date outgress, int idCategory, String name){
         super();
         this.sku=sku;
         this.brand=brand;
@@ -76,5 +82,6 @@ public class ProductModel {
         this.ingressDate=ingressDate;
         this.outgress=outgress;
         this.idCategory= idCategory;
+        this.name = name;
     }
 }
