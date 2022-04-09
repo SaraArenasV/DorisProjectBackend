@@ -68,7 +68,7 @@ public class ProductApiController {
 
     }
 
-    @PutMapping("/updateProduct")
+    @PostMapping("/updateProduct")
     public ResponseEntity<?> update(@RequestBody Product product) {
         return new ResponseEntity<>(service.update(product), HttpStatus.OK);
     }
