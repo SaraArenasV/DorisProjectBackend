@@ -72,7 +72,7 @@ public class ProductApiController {
     public ResponseEntity<?> update(@RequestBody ProductModel product) {
         return new ResponseEntity<>(service.save(product), HttpStatus.OK);
     }
-    
+
     @PostMapping("/addproduct")
     public ResponseEntity<Product> addProduct(@RequestParam String sku, Integer cantidad) {
         return new ResponseEntity<>(service.addStock(sku, cantidad), HttpStatus.OK);
