@@ -70,7 +70,7 @@ public class ProductApiController {
 
     @PutMapping("/updateProduct")
     public ResponseEntity<?> update(@RequestBody Product product) {
-        return new ResponseEntity<>(service.save(product), HttpStatus.OK);
+        return new ResponseEntity<>(service.update(product), HttpStatus.OK);
     }
 
     @PostMapping("/addproduct")

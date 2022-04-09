@@ -46,7 +46,7 @@ public class ProductService implements IProductService {
     }
 
     public Product update(Product request) {
-        
+
         return repository.save(request);
     }
 
