@@ -45,6 +45,14 @@ public class ProductService implements IProductService {
         return repository.save(product);
     }
 
+    public Product update(Product request) {
+        
+        return repository.save(request);
+    }
+
+
+
+
     public Product findProductBySku(String sku) {
         return repository.getBySku(sku);
     }
