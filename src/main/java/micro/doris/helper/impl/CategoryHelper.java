@@ -25,7 +25,7 @@ public class CategoryHelper implements ICategoryHelper {
 
         List<ProductCategory> response = new ArrayList<>();
         try {
-            List<Product> allProducts = repository.findAll();
+            List<Product> allProducts = repository.findByActive("Y");
             for (int i = 0; i < allProducts.size(); i++) {
 
                 Product product = allProducts.get(i);

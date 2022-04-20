@@ -17,4 +17,6 @@ public interface ICategoryService {
 	Category save(Category request);
 
 	List<Category> findAll();
+
+	List<Category> findByActive();
 }

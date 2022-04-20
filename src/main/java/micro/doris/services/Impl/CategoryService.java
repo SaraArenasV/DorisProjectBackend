@@ -109,4 +109,7 @@ public class CategoryService implements ICategoryService {
 		return repository.findAll();
 	}
 
+	public List<Category> findByActive(){
+		return repository.findByActive("Y");
+	}
 }
