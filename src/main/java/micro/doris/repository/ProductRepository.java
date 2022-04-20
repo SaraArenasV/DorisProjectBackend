@@ -14,4 +14,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
 	public Product findBySku(String sku);
 
+	public List<Product> findByActive(String active);
+
 }

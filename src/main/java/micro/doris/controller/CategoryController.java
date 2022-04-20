@@ -58,6 +58,6 @@ public class CategoryController {
 
 	@GetMapping("/getCategoryList")
 	ResponseEntity<List<Category>> getListCategory()  {
-		return new ResponseEntity<>(callService.findAll(), HttpStatus.OK );
+		return new ResponseEntity<>(callService.findByActive(), HttpStatus.OK );
 	}
 }
